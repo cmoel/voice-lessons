@@ -1,11 +1,14 @@
 import React, { Component, PropTypes }             from "react"
+import { connect }                                 from "react-redux"
+import { setCurrentStudent }                       from "../actions/currentStudent"
 
-const SidebarItem = ({ student }) => {
+const SidebarItem = ({ dispatch, student }) => {
+  const { id, name, school } = student
   return (
-    <li className="list-group-item">
+    <li className="list-group-item" onClick={ () => { dispatch(setCurrentStudent(id)) }}>
       <div className="media-body">
-        <strong>{student.name}</strong>
-        <p>{student.school}</p>
+        <strong>{name}</strong>
+        <p>{school}</p>
       </div>
     </li>
   )
@@ -22,4 +25,4 @@ SidebarItem.propTypes = {
   }).isRequired,
 }
 
-export default SidebarItem
+export default connect()(SidebarItem)
