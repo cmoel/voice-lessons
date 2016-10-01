@@ -1,13 +1,13 @@
-var webpack            = require("webpack");
-var path               = require("path");
+var webpack = require("webpack");
+var path = require("path");
 
 module.exports = {
   entry: {
-    app: ["webpack/hot/dev-server", path.resolve(__dirname, "index.jsx")],
+    app: ["webpack/hot/dev-server", path.resolve(__dirname, "index.js")],
   },
   target: "electron",
   resolve: {
-    extensions: ["", ".js", ".jsx"]
+    extensions: ["", ".js"]
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -20,7 +20,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["babel-loader"] },
+      { test: /\.js$/, exclude: /node_modules/, loaders: ["babel-loader"] },
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.scss$/, loaders: ["style", "css", "sass"]},
 

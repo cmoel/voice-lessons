@@ -3,12 +3,21 @@ import { connect }                                 from "react-redux"
 
 import SidebarItem                                 from "./SidebarItem"
 
+const buildSidebarItems = (students) => {
+  const sidebarStudents = students.map((student, _i) => {
+    return <SidebarItem key={`student-${student.id}`} student={student} />
+  })
+  return sidebarStudents
+}
+
 const Sidebar = ({ students }) => {
+        // <li className="list-group-header">
+        //   <input className="form-control" type="text" placeholder="Search for someone" />
+        // </li>
   return (
     <div className="pane-sm sidebar">
       <ul className="list-group">
-        { students.map((student, _i) => {
-          return <SidebarItem key={`student-${student.id}`} student={student} /> }) }
+        { buildSidebarItems(students) }
       </ul>
     </div>
   )

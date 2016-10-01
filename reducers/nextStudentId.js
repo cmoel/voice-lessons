@@ -1,4 +1,4 @@
-import { SET_CURRENT_STUDENT } from "../constants"
+import { INCREMENT_NEXT_STUDENT_ID } from "../constants"
 
 const initialState = 1
 
@@ -6,9 +6,9 @@ export default function(state = initialState, action) {
   const { type, payload } = action
 
   switch (type) {
-    case SET_CURRENT_STUDENT:
+    case INCREMENT_NEXT_STUDENT_ID:
       const { studentId } = payload
-      return studentId
+      return studentId + 1
 
     default:
       return state

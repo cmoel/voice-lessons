@@ -1,29 +1,40 @@
 import {
-  INIT_STUDENTS,
-  ADD_STUDENT,
-  UPDATE_STUDENT,
-  UPDATE_STUDENTS,
-  DELETE_STUDENT
+  ADD_NEW_STUDENT,
 } from "../constants"
 
-const initialState = []
+// const student = (state, action) => {
+//   const { type, payload } = action
 
-export default function(state = initialState, action) {
+//   switch (type) {
+
+//     case ADD_STUDENT:
+//       // const { student } = payload
+//       const { id } = payload
+//       console.log(Object.assign({}, newStudent, { id }))
+//       return Object.assign({}, newStudent, { id })
+
+//   }
+// }
+
+const newStudent = (id) => {
+  name = "New Student"
+  return {
+    id,
+    name,
+  }
+}
+
+export default (state = [], action) => {
   const { type, payload } = action
 
   switch (type) {
-    case ADD_STUDENT:
-      return state
 
-    case UPDATE_STUDENT:
-      return state
-
-    case UPDATE_STUDENTS:
-      const { students } = payload
-      return students
-
-    case DELETE_STUDENT:
-      return state
+    case ADD_NEW_STUDENT:
+      const { id } = payload.student
+      return [
+        ...state,
+        newStudent(id)
+      ]
 
     default:
       return state

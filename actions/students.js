@@ -1,37 +1,32 @@
-import { UPDATE_STUDENTS } from "../constants"
+import {
+  ADD_NEW_STUDENT,
+  INCREMENT_NEXT_STUDENT_ID,
+} from "../constants"
+import { setCurrentStudent } from "./currentStudent"
 
-export function submitUpdateStudent(id, props) {
-  return dispatch => {
-    setTimeout(() => {
-      const currentStudents = [
-        { id: 1, name: "Kimberly Prins Moeller", phone: "2017396359", school: "University of Arizona", graduationYear: 2014, languages: ["French", "Italian", "German"] },
-        { id: 2, name: "Christopher Moeller", phone: "2017392627", school: "Houghton College", graduationYear: 2005, languages: [] },
-      ]
-      const updatedStudents = currentStudents.map(
-        (student, _i) => {
-          return student.id === id ?
-            Object.assign({}, student, props) :
-            student
-      })
-      dispatch(updateStudentsInStorage(updatedStudents))
-      dispatch(updateStudentsInState(updatedStudents))
-    })
+export const addStudent = () => {
+  return (dispatch, getState) => {
+    const { nextStudentId } = getState()
+    dispatch(addNewStudent(nextStudentId))
+    dispatch(incrementNextStudentId(nextStudentId))
+    dispatch(setCurrentStudent(nextStudentId))
   }
 }
 
-function updateStudentsInStorage(students) {
-  return dispatch => {
-    setTimeout(() => {
-      console.log(students)
-    })
-  }
-}
-
-export function updateStudentsInState(students) {
+const addNewStudent = (id) => {
   return {
-    type: UPDATE_STUDENTS,
+    type: ADD_NEW_STUDENT,
     payload: {
-      students,
+      student: { id }
+    }
+  }
+}
+
+const incrementNextStudentId = (studentId) => {
+  return {
+    type: INCREMENT_NEXT_STUDENT_ID,
+    payload: {
+      studentId
     }
   }
 }
