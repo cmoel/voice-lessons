@@ -1,8 +1,6 @@
-const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-// const Menu = electron.Menu;
-// const crashReporter = electron.crashReporter;
+const { app, BrowserWindow } = require("electron")
+// const Menu = electron.Menu
+// const crashReporter = electron.crashReporter
 
 // // report crashes
 // crashReporter.start({
@@ -10,24 +8,25 @@ const BrowserWindow = electron.BrowserWindow;
 //   companyName: "cmoel.com",
 //   submitURL: "http://cmoel.com/crashes",
 //   autoSubmit: false
-// });
+// })
 
-app.on("window-all-closed", function() {
-  if (process.platform != "darwin") {
-    app.quit();
+let mainWindow = null
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit()
   }
-});
+})
 
-app.on("ready", function() {
+app.on("ready", () => {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 600,
-    "acceptFirstMouse": true,
-    "titleBarStyle": "hidden"
-  });
-  mainWindow.loadURL("file://" + __dirname + "/index.html");
-  mainWindow.openDevTools();
-  mainWindow.on("closed", function() {
-    mainWindow = null;
-  });
-});
+    acceptFirstMouse: true,
+    title: app.getName(),
+  })
+  mainWindow.loadURL("file://" + __dirname + "/index.html")
+  mainWindow.webContents.openDevTools()
+  require("devtron").install()
+  mainWindow.on("closed", () => mainWindow = null)
+})
