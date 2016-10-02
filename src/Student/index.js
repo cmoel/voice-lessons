@@ -29,12 +29,16 @@ class Student extends Component {
     // still missing inputs for languages and notes
     const { name, phone, school, graduationYear, languages, repList, notes } = this.props.current
     return(
-      <form>
-        <Input id="name" label="Name" value={name} onChange={this.handleInputChange} />
-        <Input id="phone" label="Phone" value={phone} onChange={this.handleInputChange} />
-        <Input id="school" label="School" value={school} onChange={this.handleInputChange} />
-        <Input id="graduationYear" label="Graduation Year" value={graduationYear} type="number" onChange={this.handleInputChange} />
-        <RepList value={repList} onChange={this.handleInputChange} />
+      <form className="pane-group">
+        <div className="pane padded-more">
+          <Input id="name" label="Name" value={name} onChange={this.handleInputChange} />
+          <Input id="phone" label="Phone" value={phone} onChange={this.handleInputChange} />
+          <Input id="school" label="School" value={school} onChange={this.handleInputChange} />
+          <Input id="graduationYear" label="Graduation Year" value={graduationYear} type="number" onChange={this.handleInputChange} />
+        </div>
+        <div className="pane padded-more">
+          <RepList value={repList} onChange={this.handleInputChange} />
+        </div>
       </form>
     )
   }
