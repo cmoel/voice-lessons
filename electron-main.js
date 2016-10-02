@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require("electron")
-// const Menu = electron.Menu
-// const crashReporter = electron.crashReporter
+const storage = require("electron-storage")
+const defaultStudents = require("./default-students")
+
 
 // // report crashes
 // crashReporter.start({
@@ -10,7 +11,9 @@ const { app, BrowserWindow } = require("electron")
 //   autoSubmit: false
 // })
 
+
 let mainWindow = null
+
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -18,7 +21,10 @@ app.on("window-all-closed", () => {
   }
 })
 
+
 app.on("ready", () => {
+  ensureStudentStorageExists()
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 600,
@@ -30,3 +36,33 @@ app.on("ready", () => {
   require("devtron").install()
   mainWindow.on("closed", () => mainWindow = null)
 })
+
+
+const ensureStudentStorageExists = () => (
+  storage
+  .isPathExists("students.json")
+  .then(exists => {
+    if(!exists) {
+      storage
+      .set("students", defaultStudents)
+      .then(() => console.log("created students storage file"))
+      .catch(err => console.error(err))
+    }
+  })
+)
+
+
+const sendStudents = students => mainWindow.webContents.send("retrieved-students", students)
+// This is just a placeholder for now and needs to be updated with actual error handling
+const sendError = err => console.error(err)
+
+
+const retrieveStudentsFromStorage = () => (
+  storage
+  .get("students")
+  .then(students => sendStudents(students))
+  .catch(err => sendError(err))
+)
+
+
+exports.retrieveStudentsFromStorage = retrieveStudentsFromStorage
