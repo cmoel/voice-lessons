@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
 import * as actions from "./actions"
+import Note from "./Note"
 import Input from "./Input"
 
 class Notes extends Component {
@@ -22,7 +23,7 @@ class Notes extends Component {
     return(
       <div className="form-group">
         <h5>Notes</h5>
-        <ul children={ data.map((n, i) => <li>{n.content}</li>) } />
+        <ul children={ data.map((n, i) => <Note {...n} />) } />
         <Input id="newNote" label="New Note" value={newNote} type="text" onChange={onChange} />
         <button
           className="btn btn-default"
