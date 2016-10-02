@@ -2,15 +2,15 @@ import React, { Component, PropTypes } from "react"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
-import * as actions from "../actions/students"
-import SidebarItem from "./SidebarItem"
+import * as actions from "../../Student/actions"
+import Item from "./Item"
 
 const Sidebar = ({ previous, current, next }) => (
   <div className="pane-sm sidebar">
     <ul className="list-group">
-      { previous.map((student, i) => <SidebarItem key={i} student={student} />) }
-      <SidebarItem student={current} />
-      { next.map((student, i) => <SidebarItem key={i} student={student} />) }
+      { previous.map((student, i) => <Item key={i} student={student} />) }
+      <Item student={current} />
+      { next.map((student, i) => <Item key={i} student={student} />) }
     </ul>
   </div>
 )

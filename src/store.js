@@ -1,9 +1,8 @@
 import { remote } from "electron"
-// import { remote, ipcRenderer } from "electron"
 import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import createLogger from "redux-logger"
-import rootReducer from "../reducers"
+import rootReducer from "./reducers"
 
 const mainProcess = remote.require("./electron-main")
 
@@ -26,8 +25,8 @@ export default initialState => {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept("../reducers", () => {
-      const nextRootReducer = require("../reducers")
+    module.hot.accept("./reducers", () => {
+      const nextRootReducer = require("./reducers")
       store.replaceReducer(nextRootReducer)
     })
   }

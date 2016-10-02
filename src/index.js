@@ -1,8 +1,8 @@
 import { remote, ipcRenderer } from "electron"
 import React from "react"
 import { render } from "react-dom"
-import App from "./containers/App"
-import configureStore from "./store/configureStore"
+import App from "./App"
+import configureStore from "./store"
 
 const mainProcess = remote.require("./electron-main")
 mainProcess.retrieveStudentsFromStorage()

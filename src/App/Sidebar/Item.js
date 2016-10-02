@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from "react"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
-import * as actions from "../actions/students"
+import * as actions from "../../Student/actions"
 
-const SidebarItem = ({ showStudent, student }) => {
+const Item = ({ showStudent, student }) => {
   const { name } = student
   return (
     <li className="list-group-item" onClick={(_) => showStudent(student)}>
@@ -15,7 +15,7 @@ const SidebarItem = ({ showStudent, student }) => {
   )
 }
 
-SidebarItem.propTypes = {
+Item.propTypes = {
   student: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
@@ -23,4 +23,4 @@ SidebarItem.propTypes = {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
-export default connect(null, mapDispatchToProps)(SidebarItem)
+export default connect(null, mapDispatchToProps)(Item)

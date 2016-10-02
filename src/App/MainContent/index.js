@@ -1,7 +1,7 @@
 import React from "react"
 
-import Sidebar from "../components/Sidebar"
-import Student from "../components/Student"
+import Sidebar from "../Sidebar"
+import Student from "../../Student"
 
 const MainContent = () => (
   <div className="window-content">

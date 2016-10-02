@@ -3,7 +3,7 @@ var path = require("path");
 
 module.exports = {
   entry: {
-    app: ["webpack/hot/dev-server", path.resolve(__dirname, "index.js")],
+    app: ["webpack/hot/dev-server", path.resolve(__dirname, "src/index.js")],
   },
   target: "electron",
   resolve: {
