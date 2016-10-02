@@ -7,12 +7,14 @@ import * as actions from "./actions"
 import Input from "./Input"
 import Languages from "./Languages"
 import RepList from "./RepList"
+import Notes from "./Notes"
 
 class Student extends Component {
 
   constructor(props) {
     super(props)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleNoteInput = this.handleNoteInput.bind(this)
   }
 
   handleInputChange(e) {
@@ -20,6 +22,17 @@ class Student extends Component {
     updateStudent(
       R.assoc(
         e.target.id,
+        e.target.value,
+        student
+      )
+    )
+  }
+
+  handleNoteInput(e) {
+    const { updateStudent, current: student } = this.props
+    updateStudent(
+      R.assocPath(
+        ["notes", "newNote"],
         e.target.value,
         student
       )
@@ -40,6 +53,7 @@ class Student extends Component {
         </div>
         <div className="pane padded-more">
           <RepList value={repList} onChange={this.handleInputChange} />
+          <Notes student={this.props.current} onChange={this.handleNoteInput} />
         </div>
       </form>
     )

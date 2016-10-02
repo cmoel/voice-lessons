@@ -31,6 +31,23 @@ const deleteStudent = ({ state, payload: { student } }) => {
   }
 }
 
+const saveNote = ({ state, payload: { student } }) => {
+  const { notes: { newNote, data } } = student
+  return {
+    ...state,
+    current: {
+      ...student,
+      notes: {
+        data: [
+          ...data,
+          { timestamp: Date.now, content: newNote },
+        ],
+        newNote: "",
+      }
+    }
+  }
+}
+
 export default (state = {}, action) => {
   const { type, payload } = action
 
@@ -59,6 +76,9 @@ export default (state = {}, action) => {
 
     case C.DELETE_STUDENT:
       return deleteStudent({ state, payload })
+
+    case C.SAVE_NEW_NOTE:
+      return saveNote({ state, payload })
 
     default:
       return state

@@ -28,5 +28,10 @@ export const updateStudent = student => ({
 
 export const deleteStudent = student => ({
   type: C.DELETE_STUDENT,
-  payload: { student }
+  payload: { student },
+})
+
+export const saveNewNote = student => ({
+  type: C.SAVE_NEW_NOTE,
+  payload: { student },
 })
