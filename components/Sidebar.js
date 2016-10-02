@@ -1,37 +1,33 @@
-import React, { Component, PropTypes }             from "react"
-import { connect }                                 from "react-redux"
+import React, { Component, PropTypes } from "react"
+import { connect } from "react-redux"
 
-import SidebarItem                                 from "./SidebarItem"
+import SidebarItem from "./SidebarItem"
+import studentList from "../utils/studentList"
 
-const buildSidebarItems = (students) => {
-  const sidebarStudents = students.map((student, _i) => {
-    return <SidebarItem key={`student-${student.id}`} student={student} />
-  })
-  return sidebarStudents
-}
-
-const Sidebar = ({ students }) => {
-        // <li className="list-group-header">
-        //   <input className="form-control" type="text" placeholder="Search for someone" />
-        // </li>
-  return (
-    <div className="pane-sm sidebar">
-      <ul className="list-group">
-        { buildSidebarItems(students) }
-      </ul>
-    </div>
-  )
-}
+    // {console.log("current from sidebar", current)}
+const Sidebar = ({ previous, current, next }) => (
+  <div className="pane-sm sidebar">
+    <ul className="list-group">
+      { previous.map((student, i) => <SidebarItem key={i} student={student} />) }
+      <SidebarItem student={current} />
+      { next.map((student, i) => <SidebarItem key={i} student={student} />) }
+    </ul>
+  </div>
+)
 
 Sidebar.propTypes = {
-  students: PropTypes.arrayOf(PropTypes.object).isRequired,
+  previous: PropTypes.arrayOf(PropTypes.object).isRequired,
+  current: PropTypes.object.isRequired,
+  next: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // students: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-function mapStateToProps(state, _ownProps) {
-  const { students } = state
-  return {
-    students,
-  }
-}
+const mapStateToProps = (state, _ownProps) => state.students
+  // return state.students
+  // // return {
+  // //   // students: studentList(students),
+  // //   students,
+  // // }
+// }
 
 export default connect(mapStateToProps)(Sidebar)

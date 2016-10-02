@@ -1,33 +1,32 @@
-import React, { Component }                        from "react"
-import { connect }                                 from "react-redux"
-import { submitUpdateStudent }                     from "../actions/students"
+import React, { Component } from "react"
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import R from "ramda"
+import * as actionCreators from "../actions/students"
+// import * as componentActions from "./actions"
 
 class StudentForm extends Component {
 
   constructor(props) {
     super(props)
-    const { name } = props.student
-    this.state = {
-      name,
-    }
-    this.submitForm        = this.submitForm.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  submitForm(e) {
-    e.preventDefault()
-    const { dispatch, student } = this.props
-    const { id } = student
-    dispatch(submitUpdateStudent(id, this.state))
-  }
-
   handleInputChange(e) {
-    this.setState({ [e.target.id]: e.target.value })
+    const { updateStudent, current: student } = this.props
+    updateStudent(
+      R.assoc(
+        e.target.id,
+        e.target.value,
+        student
+      )
+    )
   }
 
   render() {
+    const { name } = this.props.current
     return(
-      <form onSubmit={this.submitForm}>
+      <form>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
@@ -35,16 +34,17 @@ class StudentForm extends Component {
             type="text"
             className="form-control"
             placeholder="Name"
-            value={this.state.name}
+            value={name}
             onChange={this.handleInputChange}
           />
-        </div>
-        <div className="form-actions">
-          <button type="submit" className="btn btn-form btn-default">Done</button>
         </div>
       </form>
     )
   }
+
 }
 
-export default connect()(StudentForm)
+const mapStateToProps = (state, _ownProps) => state.students
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentForm)

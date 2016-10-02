@@ -1,37 +1,22 @@
-import React, { PropTypes } from "react"
-import { connect } from "react-redux"
-import { find, propEq } from "ramda"
+// import React, { PropTypes } from "react"
+// import { connect } from "react-redux"
 
-import StudentForm from "./StudentForm"
-import NoStudentSelected from "./NoStudentSelected"
+// import StudentForm from "./StudentForm"
 
-const getStudentById = id => propEq("id", id)
+// const Student = () => {
+//   // console.log(id, name)
+//   return (
+//     <div className="pane padded-more">
+//       <StudentForm />
+//     </div>
+//   )
+// }
 
-const Student = ({ currentStudentId, students }) => {
-  const currentStudent = find(getStudentById(currentStudentId), students)
-  const currentStudentIsValid = students.length > 0 && currentStudentId != 0
+// // Student.propTypes = {
+// //   id: PropTypes.number.isRequired,
+// //   name: PropTypes.string.isRequired,
+// // }
 
-  return (
-    <div className="pane padded-more">
-      { currentStudentIsValid
-      ? <StudentForm student={currentStudent} />
-      : <NoStudentSelected />
-      }
-    </div>
-  )
-}
+// // const mapStateToProps = (state, _ownProps) => state.students.current
 
-Student.propTypes = {
-  currentStudentId: PropTypes.number.isRequired,
-  students: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
-
-function mapStateToProps(state, _ownProps) {
-  const { students, currentStudentId } = state
-  return {
-    currentStudentId,
-    students,
-  }
-}
-
-export default connect(mapStateToProps)(Student)
+// export default connect()(Student)

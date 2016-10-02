@@ -1,14 +1,15 @@
 exports.students = {
   nextId: 3,
-  data: [
-    {
-      id: 1,
-      name: "Kimberly Prins Moeller",
-      phone: "2017396359",
-      school: "University of Arizona",
-      graduationYear: 2014,
-      languages: ["French", "Italian", "German"],
-    },
+  previous: [],
+  current: {
+    id: 1,
+    name: "Kimberly Prins Moeller",
+    phone: "2017396359",
+    school: "University of Arizona",
+    graduationYear: 2014,
+    languages: ["French", "Italian", "German"],
+  },
+  next: [
     {
       id: 2,
       name: "Christopher Moeller",

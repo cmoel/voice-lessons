@@ -1,16 +1,21 @@
 import { remote, ipcRenderer } from "electron"
 import React from "react"
 import { render } from "react-dom"
-import Root from "./containers/Root"
+import App from "./containers/App"
 import configureStore from "./store/configureStore"
 
 const mainProcess = remote.require("./electron-main")
 mainProcess.retrieveStudentsFromStorage()
 
-ipcRenderer.on("retrieved-students", (evt, students) => {
+ipcRenderer.on(
+  "retrieved-students",
+  (_evt, students) => initApp(students)
+)
+
+const initApp = (students) => {
   const store = configureStore(students)
   render(
-    <Root store={store} />,
+    <App store={store} />,
     document.querySelector("#main")
   )
-})
+}

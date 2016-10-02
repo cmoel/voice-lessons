@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require("electron")
+// const { app, BrowserWindow, Menu } = require("electron")
+// const { app, BrowserWindow, Menu, crashReporter } = require("electron")
 const storage = require("electron-storage")
 const defaultStudents = require("./default-students")
 
@@ -65,4 +67,13 @@ const retrieveStudentsFromStorage = () => (
 )
 
 
+const persistStudentsToStorage = (students) => (
+  storage
+  .set("students", students)
+  .then(() => console.log("updated students"))
+  .catch(err => console.error(err))
+)
+
+
 exports.retrieveStudentsFromStorage = retrieveStudentsFromStorage
+exports.persistStudentsToStorage = persistStudentsToStorage
