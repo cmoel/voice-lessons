@@ -6,17 +6,24 @@ import * as actions from "../Student/actions"
 
 const { newStudent } = actions
 
-const Footer = ({ addStudent }) => (
+const Footer = ({ addStudent, deleteStudent, students }) => (
   <footer className="toolbar toolbar-footer">
     <div className="toolbar-actions">
       <button
         className="btn btn-default"
         onClick={() => addStudent(newStudent())}
-      >New Student</button>
+        children="Add Student"
+      />
+      <button
+        className="btn btn-negative pull-right"
+        onClick={() => deleteStudent(students.current)}
+        children="Delete"
+      />
     </div>
   </footer>
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+const mapStateToProps = (state, _ownProps) => state
 
-export default connect(null, mapDispatchToProps)(Footer)
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)
