@@ -8,13 +8,6 @@ import rootReducer from "../reducers"
 const mainProcess = remote.require("./electron-main")
 
 export default initialState => {
-  // initialState is {
-  //   nextId: 3
-  //   previous: []
-  //   current: {}
-  //   next: []
-  // }
-  // It comes from the file that's read in when the application is launched
 
   const persist = store => next => action => {
     const result = next(action)

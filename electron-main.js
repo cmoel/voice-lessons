@@ -1,17 +1,6 @@
 const { app, BrowserWindow } = require("electron")
-// const { app, BrowserWindow, Menu } = require("electron")
-// const { app, BrowserWindow, Menu, crashReporter } = require("electron")
 const storage = require("electron-storage")
 const defaultStudents = require("./default-students")
-
-
-// // report crashes
-// crashReporter.start({
-//   productName: "VoiceLessons",
-//   companyName: "cmoel.com",
-//   submitURL: "http://cmoel.com/crashes",
-//   autoSubmit: false
-// })
 
 
 let mainWindow = null
@@ -70,10 +59,12 @@ const retrieveStudentsFromStorage = () => (
 const persistStudentsToStorage = (students) => (
   storage
   .set("students", students)
-  .then(() => console.log("updated students"))
-  .catch(err => console.error(err))
+  .then(() => {
+    console.log("updated students")
+    mainWindow.webContents.send("persist-students-success")
+  })
+  .catch(err => mainWindow.webContents.send("persist-students-failed", err))
 )
-
 
 exports.retrieveStudentsFromStorage = retrieveStudentsFromStorage
 exports.persistStudentsToStorage = persistStudentsToStorage

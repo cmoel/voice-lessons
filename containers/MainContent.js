@@ -1,15 +1,13 @@
 import React from "react"
 
 import Sidebar from "../components/Sidebar"
-// import Student from "../components/Student"
-import StudentForm from "../components/StudentForm"
+import Student from "../components/Student"
 
-    // <Student />
 const MainContent = () => (
   <div className="window-content">
     <Sidebar />
     <div className="pane padded-more">
-      <StudentForm />
+      <Student />
     </div>
   </div>
 )

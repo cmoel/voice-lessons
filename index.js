@@ -12,6 +12,16 @@ ipcRenderer.on(
   (_evt, students) => initApp(students)
 )
 
+ipcRenderer.on(
+  "persist-students-success",
+  (_evt) => console.log("successfully persisted students")
+)
+
+ipcRenderer.on(
+  "persist-students-failed",
+  (_evt, err) => console.error("failed to persist students", err)
+)
+
 const initApp = (students) => {
   const store = configureStore(students)
   render(

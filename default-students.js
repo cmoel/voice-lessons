@@ -8,6 +8,8 @@ exports.students = {
     school: "University of Arizona",
     graduationYear: 2014,
     languages: ["French", "Italian", "German"],
+    repList: "",
+    notes: [],
   },
   next: [
     {
@@ -17,6 +19,10 @@ exports.students = {
       school: "Houghton College",
       graduationYear: 2005,
       languages: [],
+      repList: "",
+      notes: [
+        { timestamp: "ISO8601 Date", content: "" }
+      ],
     },
   ],
 }

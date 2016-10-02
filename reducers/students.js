@@ -1,63 +1,64 @@
 import C from "../constants"
 
-// const student = (state, action) => {
-//   const { type, payload } = action
+const studentList = ({ previous, current, next }) => previous.concat([current]).concat(next)
 
-//   switch (type) {
+const show = ({ state, payload: { student } }) => {
+  const list = studentList(state)
+  const index = list.findIndex(s => s.id === student.id)
 
-//     case ADD_STUDENT:
-//       // const { student } = payload
-//       const { id } = payload
-//       console.log(Object.assign({}, newStudent, { id }))
-//       return Object.assign({}, newStudent, { id })
+  return {
+    ...state,
+    previous: list.slice(0, index),
+    current: list[index],
+    next: list.slice(index + 1, list.length),
+  }
+}
 
-//   }
-// }
+const deleteStudent = ({ state, payload: { student } }) => {
+  const list = studentList(state)
+  const index = list.findIndex(s => s.id === student.id)
+  const filtered = list.filter(s => s.id !== student.id)
 
-// const newStudent = id => {
-//   name = "New Student"
-//   return {
-//     id,
-//     name,
-//   }
-// }
+  // this is either the previous index or, in the case of deleting the first
+  // student from the list, the (new) first student in the list
+  const newIndex = Math.max(0, index - 1)
+
+  return {
+    ...state,
+    previous: filtered.slice(0, newIndex),
+    current: filtered[newIndex],
+    next: filtered.slice(newIndex + 1, filtered.length),
+  }
+}
 
 export default (state = {}, action) => {
   const { type, payload } = action
 
   switch (type) {
 
-    // case C.ADD_STUDENT:
-    //   const { id } = payload.student
-    //   return [
-    //     ...state,
-    //     newStudent(id),
-    //   ]
-
     case C.SHOW_STUDENT:
-      const { previous, current, next } = state
-      const { id } = payload
+      return show({ state, payload })
 
-      const list = previous.concat([current]).concat(next)
-      const i = list.findIndex(s => s.id === id)
-
-      const selected = list[i]
-      const newPrevious = list.slice(0, i)
-      const newNext = list.slice(i + 1, list.length)
-
+    case C.ADD_STUDENT:
       return {
         ...state,
-        previous: newPrevious,
-        current: selected,
-        next: newNext,
+        nextId: state.nextId + 1,
+        previous: studentList(state),
+        current: {
+          ...payload.student,
+          id: state.nextId,
+        },
+        next: [],
       }
 
     case C.UPDATE_STUDENT:
-      const { student } = payload
       return {
         ...state,
-        current: student,
+        current: payload.student,
       }
+
+    case C.DELETE_STUDENT:
+      return deleteStudent({ state, payload })
 
     default:
       return state

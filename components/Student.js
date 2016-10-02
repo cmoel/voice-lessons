@@ -1,22 +1,62 @@
-// import React, { PropTypes } from "react"
-// import { connect } from "react-redux"
+import React, { Component } from "react"
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import R from "ramda"
 
-// import StudentForm from "./StudentForm"
+import * as actions from "../actions/students"
 
-// const Student = () => {
-//   // console.log(id, name)
-//   return (
-//     <div className="pane padded-more">
-//       <StudentForm />
-//     </div>
-//   )
-// }
+class Student extends Component {
 
-// // Student.propTypes = {
-// //   id: PropTypes.number.isRequired,
-// //   name: PropTypes.string.isRequired,
-// // }
+  constructor(props) {
+    super(props)
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.deleteStudent = this.deleteStudent.bind(this)
+  }
 
-// // const mapStateToProps = (state, _ownProps) => state.students.current
+  handleInputChange(e) {
+    const { updateStudent, current: student } = this.props
+    updateStudent(
+      R.assoc(
+        e.target.id,
+        e.target.value,
+        student
+      )
+    )
+  }
 
-// export default connect()(Student)
+  deleteStudent(e) {
+    e.preventDefault()
+    const { deleteStudent, current: student } = this.props
+    deleteStudent(student)
+  }
+
+  render() {
+    const { name } = this.props.current
+    return(
+      <form>
+        <button
+          className="btn btn-negative pull-right"
+          onClick={(e) => this.deleteStudent(e)}
+          children="Delete"
+        />
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            className="form-control"
+            placeholder="Name"
+            value={name}
+            onChange={this.handleInputChange}
+          />
+        </div>
+      </form>
+    )
+  }
+
+}
+
+const mapStateToProps = (state, _ownProps) => state.students
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Student)
