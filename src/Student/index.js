@@ -5,6 +5,7 @@ import R from "ramda"
 
 import * as actions from "./actions"
 import Input from "./Input"
+import Languages from "./Languages"
 import RepList from "./RepList"
 
 class Student extends Component {
@@ -35,6 +36,7 @@ class Student extends Component {
           <Input id="phone" label="Phone" value={phone} onChange={this.handleInputChange} />
           <Input id="school" label="School" value={school} onChange={this.handleInputChange} />
           <Input id="graduationYear" label="Graduation Year" value={graduationYear} type="number" onChange={this.handleInputChange} />
+          <Languages value={languages} onChange={this.handleInputChange} />
         </div>
         <div className="pane padded-more">
           <RepList value={repList} onChange={this.handleInputChange} />

@@ -7,7 +7,7 @@ exports.students = {
     phone: "2017396359",
     school: "University of Arizona",
     graduationYear: 2014,
-    languages: ["French", "Italian", "German"],
+    languages: "French, Italian, German",
     repList: "",
     notes: [],
   },
@@ -18,7 +18,7 @@ exports.students = {
       phone: "2017392627",
       school: "Houghton College",
       graduationYear: 2005,
-      languages: [],
+      languages: "",
       repList: "",
       notes: [
         { timestamp: "ISO8601 Date", content: "" }
