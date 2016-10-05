@@ -6,9 +6,12 @@ export const newStudent = () => ({
   phone: "",
   school: "",
   graduationYear: null,
-  languages: [],
+  languages: "",
   repList: "",
-  notes: [],
+  notes: {
+    newNote: "",
+    data: [],
+  },
 })
 
 export const showStudent = student => ({
