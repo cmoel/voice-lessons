@@ -1,66 +1,54 @@
-const { app, BrowserWindow } = require("electron")
-const storage = require("electron-storage")
-const defaultStudents = require("./default-students")
+const { app, BrowserWindow } = require("electron");
+const storage = require("electron-storage");
+const defaultStudents = require("./default-students");
 
-
-let mainWindow = null
-
+let mainWindow = null;
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
-    app.quit()
+    app.quit();
   }
-})
-
+});
 
 app.on("ready", () => {
-  ensureStudentStorageExists()
+  ensureStudentStorageExists();
 
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 600,
     acceptFirstMouse: true,
     title: app.getName(),
-  })
-  mainWindow.loadURL("file://" + __dirname + "/index.html")
-  require("devtron").install()
-  mainWindow.on("closed", () => mainWindow = null)
-})
+  });
+  mainWindow.loadURL("file://" + __dirname + "/index.html");
+  require("devtron").install();
+  mainWindow.on("closed", () => mainWindow = null);
+});
 
-
-const ensureStudentStorageExists = () => (
-  storage
-  .isPathExists("students.json")
-  .then(exists => {
-    if(!exists) {
+const ensureStudentStorageExists = () =>
+  storage.isPathExists("students.json").then(exists => {
+    if (!exists) {
       storage
-      .set("students", defaultStudents)
-      .then(() => console.log("created students storage file"))
-      .catch(err => console.error(err))
+        .set("students", defaultStudents)
+        .then(() => console.log("created students storage file"))
+        .catch(err => console.error(err));
     }
-  })
-)
+  });
 
-
-const sendStudents = students => mainWindow.webContents.send("retrieved-students", students)
+const sendStudents = students =>
+  mainWindow.webContents.send("retrieved-students", students);
 // This is just a placeholder for now and needs to be updated with actual error handling
-const sendError = err => console.error(err)
+const sendError = err => console.error(err);
 
-
-const retrieveStudentsFromStorage = () => (
-  storage
+const retrieveStudentsFromStorage = () => storage
   .get("students")
   .then(students => sendStudents(students))
-  .catch(err => sendError(err))
-)
+  .catch(err => sendError(err));
 
-
-const persistStudentsToStorage = (students) => (
-  storage
+const persistStudentsToStorage = students => storage
   .set("students", students)
   .then(() => mainWindow.webContents.send("persist-students-success"))
-  .catch(err => mainWindow.webContents.send("persist-students-failed", err))
-)
+  .catch(err => mainWindow.webContents.send("persist-students-failed", err));
 
-exports.retrieveStudentsFromStorage = retrieveStudentsFromStorage
-exports.persistStudentsToStorage = persistStudentsToStorage
+exports.retrieveStudentsFromStorage = retrieveStudentsFromStorage;
+exports.persistStudentsToStorage = persistStudentsToStorage;
+

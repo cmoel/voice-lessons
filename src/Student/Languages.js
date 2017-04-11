@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const Languages = ({ value, onChange }) => (
   <div className="form-group">
@@ -12,6 +12,6 @@ const Languages = ({ value, onChange }) => (
       rows="2"
     />
   </div>
-)
+);
 
-export default Languages
+export default Languages;

@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-import Sidebar from "../Sidebar"
-import Student from "../../Student"
+import Sidebar from "../Sidebar";
+import Student from "../../Student";
 
 const MainContent = () => (
   <div className="window-content">
@@ -10,6 +10,6 @@ const MainContent = () => (
       <Student />
     </div>
   </div>
-)
+);
 
-export default MainContent
+export default MainContent;

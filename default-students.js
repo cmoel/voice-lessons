@@ -9,10 +9,7 @@ exports.students = {
     graduationYear: 2014,
     languages: "French, Italian, German",
     repList: "",
-    notes: {
-      newNote: "",
-      data: [],
-    },
+    notes: { newNote: "", data: [] },
   },
   next: [
     {
@@ -25,10 +22,9 @@ exports.students = {
       repList: "",
       notes: {
         newNote: "",
-        data: [
-          { timestamp: "1475449369058", content: "Duly noted" },
-        ],
+        data: [ { timestamp: "1475449369058", content: "Duly noted" } ],
       },
     },
   ],
-}
+};
+

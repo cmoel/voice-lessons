@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const RepList = ({ value, onChange }) => (
   <div className="form-group">
@@ -12,6 +12,6 @@ const RepList = ({ value, onChange }) => (
       rows="7"
     />
   </div>
-)
+);
 
-export default RepList
+export default RepList;

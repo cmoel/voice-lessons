@@ -1,11 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Provider } from "react-redux"
+import React from "react";
+import PropTypes from "prop-types";
+import { Provider } from "react-redux";
 
-import MainContent from "./MainContent"
-import Footer from "./Footer"
+import MainContent from "./MainContent";
+import Footer from "./Footer";
 
-require("./index.scss")
+require("./index.scss");
 
 const App = ({ store }) => (
   <Provider store={store}>
@@ -14,10 +14,8 @@ const App = ({ store }) => (
       <Footer />
     </div>
   </Provider>
-)
+);
 
-App.propTypes = {
-  store: PropTypes.object.isRequired,
-}
+App.propTypes = { store: PropTypes.object.isRequired };
 
-export default App
+export default App;

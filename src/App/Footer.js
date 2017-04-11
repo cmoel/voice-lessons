@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { bindActionCreators } from "redux"
-import { connect } from "react-redux"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import * as actions from "../Student/actions"
+import * as actions from "../Student/actions";
 
-const { newStudent } = actions
+const { newStudent } = actions;
 
 const Footer = ({ addStudent, deleteStudent, students }) => (
   <footer className="toolbar toolbar-footer">
@@ -22,9 +22,9 @@ const Footer = ({ addStudent, deleteStudent, students }) => (
       />
     </div>
   </footer>
-)
+);
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
-const mapStateToProps = (state, _ownProps) => state
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapStateToProps = (state, _ownProps) => state;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

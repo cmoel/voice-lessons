@@ -1,27 +1,25 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { bindActionCreators } from "redux"
-import { connect } from "react-redux"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import * as actions from "../../Student/actions"
+import * as actions from "../../Student/actions";
 
 const Item = ({ showStudent, student }) => {
-  const { name } = student
+  const { name } = student;
   return (
-    <li className="list-group-item" onClick={(_) => showStudent(student)}>
+    <li className="list-group-item" onClick={_ => showStudent(student)}>
       <div className="media-body">
         <strong>{name.length > 0 ? name : "New Student"}</strong>
       </div>
     </li>
-  )
-}
+  );
+};
 
 Item.propTypes = {
-  student: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-}
+  student: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+};
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Item)
+export default connect(null, mapDispatchToProps)(Item);
