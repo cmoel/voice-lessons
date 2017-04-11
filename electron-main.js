@@ -23,7 +23,6 @@ app.on("ready", () => {
     title: app.getName(),
   })
   mainWindow.loadURL("file://" + __dirname + "/index.html")
-  mainWindow.webContents.openDevTools()
   require("devtron").install()
   mainWindow.on("closed", () => mainWindow = null)
 })
@@ -59,10 +58,7 @@ const retrieveStudentsFromStorage = () => (
 const persistStudentsToStorage = (students) => (
   storage
   .set("students", students)
-  .then(() => {
-    console.log("updated students")
-    mainWindow.webContents.send("persist-students-success")
-  })
+  .then(() => mainWindow.webContents.send("persist-students-success"))
   .catch(err => mainWindow.webContents.send("persist-students-failed", err))
 )
 

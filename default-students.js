@@ -26,7 +26,7 @@ exports.students = {
       notes: {
         newNote: "",
         data: [
-          { timestamp: "1475449369058", content: "" }
+          { timestamp: "1475449369058", content: "Duly noted" },
         ],
       },
     },
