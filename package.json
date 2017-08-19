@@ -23,7 +23,7 @@
     "electron-storage": "^1.0.6",
     "photon": "git://github.com/cmoel/photon.git",
     "prop-types": "^15.5.6",
-    "ramda": "^0.22.1",
+    "ramda": "^0.24.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.0",
