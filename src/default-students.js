@@ -1,4 +1,4 @@
-exports.students = {
+export default {
   nextId: 3,
   previous: [],
   current: {
@@ -6,10 +6,10 @@ exports.students = {
     name: "Kimberly Prins Moeller",
     phone: "2017396359",
     school: "University of Arizona",
-    graduationYear: 2014,
+    graduationYear: "2014",
     languages: "French, Italian, German",
     repList: "",
-    notes: { newNote: "", data: [] },
+    notes: {newNote: "", data: []},
   },
   next: [
     {
@@ -17,14 +17,13 @@ exports.students = {
       name: "Christopher Moeller",
       phone: "2017392627",
       school: "Houghton College",
-      graduationYear: 2005,
+      graduationYear: "2005",
       languages: "",
       repList: "",
       notes: {
         newNote: "",
-        data: [ { timestamp: "1475449369058", content: "Duly noted" } ],
+        data: [{timestamp: "1475449369058", content: "Duly noted"}],
       },
     },
   ],
 };
-

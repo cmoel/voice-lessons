@@ -76,7 +76,7 @@ class Student extends Component {
   }
 }
 
-const mapStateToProps = (state, _ownProps) => state.students;
+const mapStateToProps = state => state.students;
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Student);

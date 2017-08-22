@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Voice Lessons</title>
+    <link rel="stylesheet" href="../node_modules/photon/dist/css/photon.css" />
+  </head>
+  <body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0" >
+    <div id="main"></div>
+  </body>
+
+  <script type="text/jsx">
+    import React from "react";
+    import {render} from "react-dom";
+    import {ipcRenderer} from "electron";
+    import log from "electron-log";
+
+    import App from "./App";
+    import configureStore from "./store";
+
+    ipcRenderer.on("persist-students-success", (_evt, students) =>
+      log.info(`successfuly persisted students ${JSON.stringify(students)}`)
+    );
+
+    ipcRenderer.on("persist-students-failed", (_evt, err) =>
+      log.error(`failed to persist students ${JSON.stringify(err)}`)
+    );
+
+    const students = ipcRenderer.sendSync("fetch-students");
+
+    render(
+      <App store={configureStore(students)} />,
+      document.querySelector("#main")
+    );
+
+    if (module.hot) module.hot.accept(render);
+  </script>
+</html>

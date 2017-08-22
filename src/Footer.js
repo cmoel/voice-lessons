@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../Student/actions";
+import * as actions from "./Student/actions";
 
 const { newStudent } = actions;
 
@@ -24,7 +24,7 @@ const Footer = ({ addStudent, deleteStudent, students }) => (
   </footer>
 );
 
+const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
-const mapStateToProps = (state, _ownProps) => state;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

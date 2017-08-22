@@ -23,7 +23,7 @@ class Notes extends Component {
     return (
       <div className="form-group">
         <h5>Notes</h5>
-        <ul children={data.map((n, i) => <Note {...n} />)} />
+        <ul children={data.map((n, i) => <Note key={i} {...n} />)} />
         <Input
           id="newNote"
           label="New Note"

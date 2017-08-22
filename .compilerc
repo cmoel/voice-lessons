@@ -1,0 +1,32 @@
+{
+  "env": {
+    "development": {
+      "application/javascript": {
+        "presets": [
+          ["env", { "targets": { "electron": "1.7.5" } }],
+          "react"
+        ],
+        "plugins": [
+          "transform-async-to-generator",
+          "transform-es2015-classes",
+          "babel-plugin-transform-object-rest-spread",
+          "react-hot-loader/babel"
+        ],
+        "sourceMaps": "inline"
+      }
+    },
+    "production": {
+      "application/javascript": {
+        "presets": [
+          ["env", { "targets": { "electron": "1.7.5" } }],
+          "react"
+        ],
+        "plugins": [
+          "transform-async-to-generator",
+          "transform-es2015-classes"
+        ],
+        "sourceMaps": "none"
+      }
+    }
+  }
+}

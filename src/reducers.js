@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 
 import students from "./Student/reducer";
 
-const rootReducer = combineReducers({ students });
+const rootReducer = combineReducers({students});
 
 export default rootReducer;

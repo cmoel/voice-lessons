@@ -1,6 +1,8 @@
 # Voice Lessons
 
-To build:
+For dev:
 - `yarn install`
-- `npm run watch` # starts the Webpack server
-- `npm start` # starts the Electron app
+- `yarn start`
+
+To build for distribution:
+- `yarn run make`

@@ -5,7 +5,7 @@ export const newStudent = () => ({
   name: "",
   phone: "",
   school: "",
-  graduationYear: null,
+  graduationYear: "",
   languages: "",
   repList: "",
   notes: { newNote: "", data: [] },

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../../Student/actions";
+import * as actions from "../Student/actions";
 import Item from "./Item";
 
 const Sidebar = ({ previous, current, next }) => (
@@ -22,7 +22,7 @@ Sidebar.propTypes = {
   next: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = (state, _ownProps) => state.students;
+const mapStateToProps = state => state.students;
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

@@ -1,21 +1,21 @@
 import React from "react";
+import {Provider} from "react-redux";
+import {AppContainer} from "react-hot-loader";
 import PropTypes from "prop-types";
-import { Provider } from "react-redux";
 
-import MainContent from "./MainContent";
-import Footer from "./Footer";
+import MainContent from "../MainContent";
+import Footer from "../Footer";
 
-require("./index.scss");
-
-const App = ({ store }) => (
+const App = ({store}) =>
   <Provider store={store}>
-    <div className="window">
-      <MainContent />
-      <Footer />
-    </div>
-  </Provider>
-);
+    <AppContainer>
+      <div className="window">
+        <MainContent />
+        <Footer />
+      </div>
+    </AppContainer>
+  </Provider>;
 
-App.propTypes = { store: PropTypes.object.isRequired };
+App.propTypes = {store: PropTypes.object.isRequired};
 
 export default App;
