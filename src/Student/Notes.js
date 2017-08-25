@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
 import * as actions from "./actions";
+import NotesTable from "./NotesTable";
 import Note from "./Note";
 import Input from "./Input";
 
@@ -14,26 +15,30 @@ class Notes extends Component {
 
   save(e) {
     e.preventDefault();
-    const { saveNewNote, student } = this.props;
+    const {saveNewNote, student} = this.props;
     saveNewNote(student);
   }
 
   render() {
-    const { student: { notes: { data, newNote } }, onChange } = this.props;
+    const {student: {notes: {data, newNote}}, onChange} = this.props;
     return (
       <div className="form-group">
-        <h5>Notes</h5>
-        <ul children={data.map((n, i) => <Note key={i} {...n} />)} />
-        <Input
-          id="newNote"
-          label="New Note"
-          value={newNote}
-          type="text"
-          onChange={onChange}
-        />
+        <h5 style={{marginTop: 0}}>Lesson Log</h5>
+        <NotesTable>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((n, i) => <Note key={i} {...n} />)}
+          </tbody>
+        </NotesTable>
+        <Input id="newNote" value={newNote} type="text" onChange={onChange} />
         <button
           className="btn btn-default"
-          children="Add Note"
+          children="Add Entry"
           onClick={e => this.save(e)}
         />
       </div>

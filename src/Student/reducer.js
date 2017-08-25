@@ -39,7 +39,7 @@ const saveNote = ({ state, payload: { student } }) => {
     current: {
       ...student,
       notes: {
-        data: [ ...data, { timestamp: Date.now, content: newNote } ],
+        data: [ ...data, { timestamp: Date.now(), content: newNote } ],
         newNote: "",
       },
     },
