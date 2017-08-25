@@ -38,8 +38,8 @@ class Student extends Component {
       notes,
     } = this.props.current;
     return (
-      <form className="pane-group">
-        <div className="pane padded-more">
+      <form className="pane-group" style={{overflowY: "hidden"}}>
+        <div className="pane-one-third padded-more">
           <Input
             id="name"
             label="Name"
