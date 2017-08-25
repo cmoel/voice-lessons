@@ -53,22 +53,15 @@ class Student extends Component {
             onChange={this.handleInputChange}
           />
           <Input
-            id="school"
-            label="School"
-            value={school}
-            onChange={this.handleInputChange}
-          />
-          <Input
             id="graduationYear"
             label="Graduation Year"
             value={graduationYear}
-            type="number"
             onChange={this.handleInputChange}
           />
           <Languages value={languages} onChange={this.handleInputChange} />
+          <RepList value={repList} onChange={this.handleInputChange} />
         </div>
         <div className="pane padded-more">
-          <RepList value={repList} onChange={this.handleInputChange} />
           <Notes student={this.props.current} onChange={this.handleNoteInput} />
         </div>
       </form>

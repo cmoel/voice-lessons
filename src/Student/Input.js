@@ -2,7 +2,6 @@ import React from "react";
 
 const Input = ({ id, type, label, placeholder, value, onChange }) => (
   <div className="form-group">
-    <label htmlFor={id}>{label}</label>
     <input
       id={id}
       type={type || "text"}

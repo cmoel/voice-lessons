@@ -2,7 +2,6 @@ import React from "react";
 
 const Languages = ({ value, onChange }) => (
   <div className="form-group">
-    <label htmlFor="languages">Languages</label>
     <textarea
       id="languages"
       className="form-control"
