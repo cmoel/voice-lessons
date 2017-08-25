@@ -3,6 +3,7 @@ import React from "react";
 const RepList = ({ value, onChange }) => (
   <div className="form-group">
     <textarea
+      style={{resize: "none"}}
       id="repList"
       className="form-control"
       placeholder="Rep List"
