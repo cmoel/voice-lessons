@@ -27,7 +27,7 @@ class Notes extends Component {
         <NotesTable>
           <thead>
             <tr>
-              <th>Timestamp</th>
+              <th style={{width: 150}}>Timestamp</th>
               <th />
             </tr>
           </thead>

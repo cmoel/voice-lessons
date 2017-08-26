@@ -1,4 +1,5 @@
 import C from "../constants";
+import {LocalDateTime} from "js-joda";
 
 const studentList = ({ previous, current, next }) =>
   previous.concat([ current ]).concat(next);
@@ -39,7 +40,7 @@ const saveNote = ({ state, payload: { student } }) => {
     current: {
       ...student,
       notes: {
-        data: [ ...data, { timestamp: Date.now(), content: newNote } ],
+        data: [ ...data, { timestamp: LocalDateTime.now().toString(), content: newNote } ],
         newNote: "",
       },
     },

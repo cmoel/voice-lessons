@@ -1,9 +1,18 @@
 import React from "react";
+import {LocalDateTime, DateTimeFormatter} from "js-joda";
 
-const Note = ({timestamp, content, deleteNote}) =>
+const formatTimestamp = tsString => {
+  const ldt = LocalDateTime.parse(tsString);
+  const hour = ldt.hour();
+  const amOrPm = hour < 12 ? "am" : "pm";
+  const formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy h:mm");
+  return `${ldt.format(formatter)} ${amOrPm}`;
+};
+
+const Note = ({timestamp: tsString, content, deleteNote}) =>
   <tr>
     <td>
-      {new Date(parseInt(timestamp)).toString()}
+      {formatTimestamp(tsString)}
     </td>
     <td>
       {content}
