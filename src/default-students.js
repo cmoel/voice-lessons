@@ -20,10 +20,7 @@ export default {
       graduationYear: "2005",
       languages: "",
       repList: "",
-      notes: {
-        newNote: "",
-        data: [{timestamp: "1475449369058", content: "Duly noted"}],
-      },
+      notes: {newNote: "", data: []},
     },
   ],
 };
