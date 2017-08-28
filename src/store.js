@@ -15,7 +15,7 @@ const persist = store => next => action => {
 export default initialState => {
   const store = createStore(
     rootReducer,
-    initialState,
+    {...initialState, searchTerm: ""},
     applyMiddleware(thunk, persist)
   );
 
