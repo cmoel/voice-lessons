@@ -1,8 +1,12 @@
-import C from "../constants";
+import R from "ramda";
 import {LocalDateTime} from "js-joda";
 
+import C from "../constants";
+
+const sortByName = R.sortBy(R.compose(R.toLower, R.prop("name")));
+
 const studentList = ({previous, current, next}) =>
-  previous.concat([current]).concat(next);
+  sortByName(previous.concat([current]).concat(next));
 
 const show = ({state, payload: {student}}) => {
   const list = studentList(state);
