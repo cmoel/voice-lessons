@@ -21,9 +21,9 @@ class Student extends Component {
     updateStudent(R.assoc(e.target.id, e.target.value, student));
   }
 
-  handleNoteInput(e) {
+  handleNoteInput(text) {
     const { updateStudent, current: student } = this.props;
-    updateStudent(R.assocPath([ "notes", "newNote" ], e.target.value, student));
+    updateStudent(R.assocPath([ "notes", "newNote" ], text, student));
   }
 
   render() {
