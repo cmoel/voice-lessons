@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain} from "electron";
+import {app, BrowserWindow, Menu, ipcMain} from "electron";
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
@@ -9,6 +9,7 @@ import log from "electron-log";
 log.transports.console.level = false;
 log.transports.file.level = "info";
 
+import AppMenu from "./AppMenu";
 import defaultStudents from "./default-students";
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -30,6 +31,8 @@ const ensureStudentStorageExists = () =>
   });
 
 const createWindow = async () => {
+  Menu.setApplicationMenu(AppMenu);
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 600,
