@@ -11,10 +11,10 @@ const formatTimestamp = tsString => {
 
 const Note = ({timestamp: tsString, content, deleteNote}) =>
   <tr>
-    <td>
+    <td style={{ whiteSpace: "nowrap", verticalAlign: "text-top" }}>
       {formatTimestamp(tsString)}
     </td>
-    <td>
+    <td style={{ whiteSpace: "normal" }}>
       {content}
     </td>
   </tr>;
